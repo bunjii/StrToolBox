@@ -1,6 +1,8 @@
 var container, stats, gui;
 var camera, scene, renderer;
 var mesh, geometry;
+var mesh2, geopts;
+
 var geometries = [
 	new THREE.BoxBufferGeometry( 200, 200, 200, 2, 2, 2 ),
 	new THREE.CircleBufferGeometry( 200, 32 ),
@@ -37,13 +39,45 @@ function addMesh() {
 	mesh.add( vertexNormalsHelper );
 }
 
+function addRandomNode() {
+	if ( mesh2 !== undefined ) {
+		scene.remove( mesh2 );
+		geopts.dispose();
+	}
+
+	geopts = new THREE.Geometry();
+	const SIZE = 100;
+	const LENGTH = 100;
+
+	for (let i = 0; i < LENGTH; i++) {
+		geopts.vertices.push(new THREE.Vector3(
+			SIZE * (Math.random() - 0.5),
+			SIZE * (Math.random() - 0.5),
+			SIZE * (Math.random() - 0.5),
+		));
+	}
+	
+	// マテリアルを作成
+	const material2 = new THREE.PointsMaterial({
+		// 一つ一つのサイズ
+		size: 3,
+		// 色
+		color: 0x333333,
+	});
+
+	mesh2 = new THREE.Points(geopts, material2);
+	scene.add(mesh2);
+}
+
+
 function init() {
 	container = document.getElementById( 'container' );
 	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
 	camera.position.z = 500;
     scene = new THREE.Scene();
     scene.background = new THREE.Color(0xFFFFFF);
-	addMesh();
+	// addMesh();
+	addRandomNode();
 	//
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
 	renderer.setPixelRatio( window.devicePixelRatio );
@@ -68,6 +102,7 @@ function init() {
 	gui = new dat.GUI( { width: 350 } );
 	gui.add( options, 'Geometry', geometries ).onChange( function () {
 		addMesh();
+	
 	} );
 	//
 	var controls = new THREE.OrbitControls( camera, renderer.domElement );
@@ -84,7 +119,7 @@ function onWindowResize() {
 function animate() {
 	requestAnimationFrame( animate );
 	render();
-	stats.update();
+	// stats.update();
 }
 function render() {
 	renderer.render( scene, camera );
