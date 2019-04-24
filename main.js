@@ -46,8 +46,8 @@ function addRandomNode() {
 	}
 
 	geopts = new THREE.Geometry();
-	const SIZE = 100;
-	const LENGTH = 100;
+	const SIZE = 1000;
+	const LENGTH = 1000;
 
 	for (let i = 0; i < LENGTH; i++) {
 		geopts.vertices.push(new THREE.Vector3(
@@ -57,11 +57,8 @@ function addRandomNode() {
 		));
 	}
 	
-	// マテリアルを作成
 	const material2 = new THREE.PointsMaterial({
-		// 一つ一つのサイズ
-		size: 3,
-		// 色
+		size: 10,
 		color: 0x333333,
 	});
 
@@ -71,14 +68,24 @@ function addRandomNode() {
 
 
 function init() {
+
 	container = document.getElementById( 'container' );
-	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
+	camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 1, 1000 );
 	camera.position.z = 500;
     scene = new THREE.Scene();
     scene.background = new THREE.Color(0xFFFFFF);
-	// addMesh();
 	addRandomNode();
-	//
+
+	var helper = new THREE.GridHelper( 2000, 100 );
+	// helper.position.y = 0;
+	helper.material.opacity = 0.25;
+	helper.material.transparent = true;
+	scene.add( helper );
+
+	var axes = new THREE.AxesHelper( 1000 );
+	axes.position.set(0,0,0 );
+	scene.add( axes );
+
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
 	renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setSize( window.innerWidth, window.innerHeight );
@@ -104,9 +111,8 @@ function init() {
 		addMesh();
 	
 	} );
-	//
+
 	var controls = new THREE.OrbitControls( camera, renderer.domElement );
-	//
 	window.addEventListener( 'resize', onWindowResize, false );
 }
 
