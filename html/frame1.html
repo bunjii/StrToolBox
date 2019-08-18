@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Null Gravity Version 0.1.0</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="../js/tabbing.js"></script>
+
+    <button class="tablink" onclick="openPage('3D-Canvas', this)" id="defaultOpen">3D-Canvas</button>
+    <button class="tablink" onclick="openPage('Contact', this)">Data</button>
+
+    <div id="3D-Canvas" class="tabcontent">
+        <iframe src="./frame1-0.html" frameborder="0" allowfullscreen
+        style="position:absolute;top:300;left:0;width:100%;height:100%;"></iframe>
+    </div>
+
+    <div id="Contact" class="tabcontent">
+        <h3>Contact</h3>
+        <p>Get in touch, or swing by for a cup of coffee.</p>
+    </div>
+    
+</body>
+    
+</html>

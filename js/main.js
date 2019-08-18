@@ -47,7 +47,7 @@ function addRandomNode() {
 
 	geopts = new THREE.Geometry();
 	const SIZE = 1000;
-	const LENGTH = 1000;
+	const LENGTH = 10000;
 
 	for (let i = 0; i < LENGTH; i++) {
 		geopts.vertices.push(new THREE.Vector3(

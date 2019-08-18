@@ -8,7 +8,7 @@ const url = require('url');
 var edge = require('electron-edge-js');
 
 var add7 = edge.func({
-  assemblyFile: "./cs_lib/StructuralTools.dll", 
+  assemblyFile: "./cs/StructuralTools.dll", 
   typeName: "TestConnection.Startup"
 });
 
@@ -20,6 +20,68 @@ var helloWorld = edge.func(function () {/*
 
 
 const { app, BrowserWindow, Menu } = electron;
+
+const templateMenu = [
+
+  // { role: 'appMenu' }
+  ...(process.platform === 'darwin' ? [{
+    label: app.getName(),
+    submenu: [
+      { role: 'about' },
+      { type: 'separator' },
+      { role: 'services' },
+      { type: 'separator' },
+      { role: 'hide' },
+      { role: 'hideothers' },
+      { role: 'unhide' },
+      { type: 'separator' },
+      { role: 'quit' }
+    ]
+  }] : []),
+
+  {
+    label: 'Edit',
+    submenu: [
+      {
+        role: 'undo',
+      },
+      {
+        role: 'redo',
+      },
+    ]
+  },
+  {
+    label: 'View',
+    submenu: [
+      {
+        label: 'Reload',
+        accelerator: 'CmdOrCtrl+R',
+        click(item, focusedWindow) {
+          if (focusedWindow) focusedWindow.reload()
+        },
+      },
+      {
+        type: 'separator',
+      },
+      {
+        role: 'resetzoom',
+      },
+      {
+        role: 'zoomin',
+      },
+      {
+        role: 'zoomout',
+      },
+      {
+        type: 'separator',
+      },
+      {
+        role: 'togglefullscreen',
+      }
+    ]
+  }
+];
+
 let mainWindow;
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 app.on('ready', () => {
@@ -31,36 +93,9 @@ app.on('ready', () => {
     height: 1000
     // ,alwaysOnTop: true
   });
+
   mainWindow.loadURL(`file://${__dirname}/index.html`);
 
-  const menu = Menu.buildFromTemplate(mainMenuTemplate);
+  const menu = Menu.buildFromTemplate(templateMenu);
   Menu.setApplicationMenu(menu);
 });
-
-const mainMenuTemplate = [
-  {
-    label: 'Devtool',
-    accelerator: 'Ctrl+D',
-    click() {
-      mainWindow.webContents.openDevTools();
-    }
-  },
-  {
-    label: 'Reload',
-    accelerator: 'Ctrl+R',
-    click() {
-      mainWindow.reload();
-    }
-  },
-  {
-    label: 'Run',
-    accelerator: 'F5',
-    click() {
-      add7(12, function(error, result){
-        if (error) throw error;
-        console.log(result);
-
-      });
-    }
-  }
-];
