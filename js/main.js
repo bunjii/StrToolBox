@@ -29,6 +29,7 @@ function addMesh() {
 		geometry.dispose();
 	}
 	geometry = geometries[ options.Geometry ];
+
 	// scale geometry to a uniform size
 	geometry.computeBoundingSphere();
 	var scaleFactor = 160 / geometry.boundingSphere.radius;
@@ -98,15 +99,11 @@ function init() {
 		BoxBufferGeometry: 0,
 		CircleBufferGeometry: 1,
 		CylinderBufferGeometry: 2,
-		IcosahedronBufferGeometry: 3,
-		OctahedronBufferGeometry: 4,
-		PlaneBufferGeometry: 5,
-		RingBufferGeometry: 6,
-		SphereBufferGeometry: 7,
-		TorusBufferGeometry: 8,
-		TorusKnotBufferGeometry: 9
+		IcosahedronBufferGeometry: 3
 	};
-	gui = new dat.GUI( { width: 350 } );
+	gui = new dat.GUI();
+	gui.domElement.id = 'gui_css';
+	gui.domElement.className = 'tabcontent'
 	gui.add( options, 'Geometry', geometries ).onChange( function () {
 		addMesh();
 	

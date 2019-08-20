@@ -1,2 +1,44 @@
-abcdefg
-hijklmn
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <title>Null Gravity Version 0.1.0</title>
+    <link rel="stylesheet" href="../css/null_grav_base.css">
+</head>
+
+<body>
+    <script src="../js/tabbing.js"></script>
+
+    <button class="tablink" onclick="openPage('FileIO')" id="defaultOpen">FileIO</button>
+    <button class="tablink" onclick="openPage('Contact')">Data</button>
+
+    <div id="FileIO" class="tabcontent">
+        <form name="io1">
+                Open a file: <input type="file" id="select_file"/>
+        </form>
+    
+        <script>
+            var obj1 = document.getElementById("select_file");
+            obj1.addEventListener("change", function(evt){
+                var file = evt.target.files;
+
+                // file reader
+                var reader = new FileReader();
+                reader.readAsText(file[0]);
+
+                reader.onload = function(){
+                    // send to the main frame
+                    parent.mainFrame.addData(reader.result);
+                }
+                
+            }, false)
+        </script>
+    </div>
+
+
+    
+</body>
+    
+</html>

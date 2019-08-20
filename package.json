@@ -1,6 +1,6 @@
 {
-  "name": "awesome-project",
-  "version": "1.0.0",
+  "name": "null-gravity",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "start": "electron ."
   },
   "keywords": [],
-  "author": "",
+  "author": "Bunji Izumi",
   "license": "ISC",
   "dependencies": {
     "dat.gui": "^0.7.6",
@@ -22,6 +22,11 @@
     "three.js": "^0.77.1"
   },
   "devDependencies": {
-    "electron": "^4.2.9"
+    "electron": "^4.2.9",
+    "electron-builder": "^21.2.0",
+    "electron-packager": "^14.0.4"
+  },
+  "win": {
+    "target": "NSIS"
   }
 }

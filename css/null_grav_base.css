@@ -1,0 +1,14 @@
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+#gui_css { 
+    position: absolute; 
+    
+    top: 100px; 
+    left:3px;
+    
+    width: 100 px;
+    height: 100 px;
+}
