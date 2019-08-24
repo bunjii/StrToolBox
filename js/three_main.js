@@ -8,18 +8,13 @@ var geometries = [
 	new THREE.CircleBufferGeometry( 200, 32 ),
 	new THREE.CylinderBufferGeometry( 75, 75, 200, 8, 8 ),
 	new THREE.IcosahedronBufferGeometry( 100, 1 ),
-	new THREE.OctahedronBufferGeometry( 200, 0 ),
-	new THREE.PlaneBufferGeometry( 200, 200, 4, 4 ),
-	new THREE.RingBufferGeometry( 32, 64, 16 ),
-	new THREE.SphereBufferGeometry( 100, 12, 12 ),
-	new THREE.TorusBufferGeometry( 64, 16, 12, 12 ),
-	new THREE.TorusKnotBufferGeometry( 64, 16 )
 ];
 var options = {
 	Geometry: 0
 };
 
 var material = new THREE.MeshBasicMaterial( { color: 0x424242, wireframe: true, opacity: 0.5 } );
+
 init();
 animate();
 
@@ -78,7 +73,6 @@ function init() {
 	addRandomNode();
 
 	var helper = new THREE.GridHelper( 2000, 100 );
-	// helper.position.y = 0;
 	helper.material.opacity = 0.25;
 	helper.material.transparent = true;
 	scene.add( helper );
@@ -91,10 +85,7 @@ function init() {
 	renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	container.appendChild( renderer.domElement );
-	//
-	// stats = new Stats();
-	// container.appendChild( stats.dom );
-	//
+
 	var geometries = {
 		BoxBufferGeometry: 0,
 		CircleBufferGeometry: 1,
@@ -118,12 +109,12 @@ function onWindowResize() {
 	camera.updateProjectionMatrix();
 	renderer.setSize( window.innerWidth, window.innerHeight );
 }
-//
+
 function animate() {
 	requestAnimationFrame( animate );
 	render();
-	// stats.update();
 }
+
 function render() {
 	renderer.render( scene, camera );
 }

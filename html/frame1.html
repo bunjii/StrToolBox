@@ -20,54 +20,114 @@
     <script type="text/javascript" src="../js/jquery-ui.js"></script>
     <script type="text/javascript" src="../js/tabulator.js"></script>
     <script type="text/javascript" src="../js/dataio.js"></script>
+    
 </head>
 
 <body>
     
     <button class="tablink" onclick="openPage('3D-Canvas')" id="defaultOpen">3D-Canvas</button>
+    <button class="tablink" onclick="openPage('Input')">Input</button>
     <button class="tablink" onclick="openPage('Node')">Node</button>
-    <button class="tablink" onclick="openPage('Table')">Table</button>
+    <button class="tablink" onclick="openPage('Element')">Element</button>
+    <button class="tablink" onclick="openPage('Material')">Material</button>
+    <button class="tablink" onclick="openPage('Section')">Section</button>
+    <button class="tablink" onclick="openPage('Load')">Load</button>
 
     <div id="3D-Canvas" class="tabcontent">
         <div id="container"></div>
-        <div id="info">
-            <a href="https://threejs.org" target="_blank" rel="noopener">three.js</a>
-        </div>
-        <script src="../js/main.js"></script>
     </div>
 
-    <div id="Node" class="tabcontent">
-        <h3>Node</h3>
-        <form name="Node">
+    <div id="Input" class="tabcontent">
+        <h3>Input Text</h3>
+        <form name="Input">
             <textarea name="rData" cols="100" rows="50"></textarea>
         </form>
     </div>
 
-    <div id="Table" class="tabcontent">
-        <div id="sample-table"></div>
-        <form name="SampleForm">
-            <textarea name="txtArea"></textarea>
-        </form>
+    <div id="Node" class="tabcontent">
+        <div id="table_node"></div>
+    </div>
+
+    <div id="Element" class="tabcontent">
+        <div id="table_element"></div>
+    </div>
+
+    <div id="Material" class="tabcontent">
+        <div id="table_material"></div>
+    </div>
+
+    <div id="Load" class="tabcontent">
+        <div id="table_load"></div>
     </div>
 
 </body>
+
     <script>
-        // window.alert([nodes.length-1].x);
-        // define data
-
-
         //Build Tabulator
-        var table = new Tabulator("#sample-table", {
-        layout:"fitColumns",
-        height:"100%",
-        reactiveData: true, //turn on data reactivity
-        data: tabledata, //load data into table
-        columns:[
-            {title:"node id", field:"id", sorter:"number", width:200},
-            {title:"X", field:"x", sorter:"number", formatter:"money", formatterParams:{precision:6}},
-            {title:"Y", field:"y", sorter:"number", formatter:"money", formatterParams:{precision:6}},
-            {title:"Z", field:"z", sorter: "number", formatter:"money", formatterParams:{precision:6}},
-        ],
-    });
+        var table0 = new Tabulator("#table_node", {
+            layout:"fitColumns",
+            height:"100%",
+            reactiveData: true, //turn on data reactivity
+            data: tabledata_node, //load data into table
+            columns:[
+                {title:"Node id", field:"id", sorter:"number", width:200},
+                {title:"X", field:"x", sorter:"number", formatter:"money", formatterParams:{precision:6}},
+                {title:"Y", field:"y", sorter:"number", formatter:"money", formatterParams:{precision:6}},
+                {title:"Z", field:"z", sorter: "number", formatter:"money", formatterParams:{precision:6}},
+            ],
+        });
+
+        var table1 = new Tabulator("#table_element", {
+            layout:"fitColumns",
+            height:"100%",
+            reactiveData: true, //turn on data reactivity
+            data: tabledata_element, //load data into table
+            columns:[
+                {title:"Element id", field:"id", sorter:"number", width:200},
+                {title:"N1", field:"n1", sorter:"number"},
+                {title:"N2", field:"n2", sorter:"number"},
+                {title:"Material id", field:"matid", sorter:"number"},
+                {title:"Section id", field:"secid", sorter:"number"},
+            ],
+        });
+
+        var table2 = new Tabulator("#table_material", {
+            layout:"fitColumns",
+            height:"100%",
+            reactiveData: true, //turn on data reactivity
+            data: tabledata_material, //load data into table
+            columns:[
+                {title:"Node id", field:"id", sorter:"number", width:200},
+                {title:"X", field:"x", sorter:"number", formatter:"money", formatterParams:{precision:6}},
+                {title:"Y", field:"y", sorter:"number", formatter:"money", formatterParams:{precision:6}},
+                {title:"Z", field:"z", sorter: "number", formatter:"money", formatterParams:{precision:6}},
+            ],
+        });
+
+        var table3 = new Tabulator("#table_section", {
+            layout:"fitColumns",
+            height:"100%",
+            reactiveData: true, //turn on data reactivity
+            data: tabledata_section, //load data into table
+            columns:[
+                {title:"node id", field:"id", sorter:"number", width:200},
+                {title:"X", field:"x", sorter:"number", formatter:"money", formatterParams:{precision:6}},
+                {title:"Y", field:"y", sorter:"number", formatter:"money", formatterParams:{precision:6}},
+                {title:"Z", field:"z", sorter: "number", formatter:"money", formatterParams:{precision:6}},
+            ],
+        });
+
+        var table4 = new Tabulator("#table_load", {
+            layout:"fitColumns",
+            height:"100%",
+            reactiveData: true, //turn on data reactivity
+            data: tabledata_load, //load data into table
+            columns:[
+                {title:"node id", field:"id", sorter:"number", width:200},
+                {title:"X", field:"x", sorter:"number", formatter:"money", formatterParams:{precision:6}},
+                {title:"Y", field:"y", sorter:"number", formatter:"money", formatterParams:{precision:6}},
+                {title:"Z", field:"z", sorter: "number", formatter:"money", formatterParams:{precision:6}},
+            ],
+        });        
     </script>
 </html>
