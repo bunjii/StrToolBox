@@ -7,16 +7,19 @@
     <link rel="stylesheet" href="../css/null_grav_base.css">
     <link rel="stylesheet" href="../css/jquery-ui.css">
     <link rel="stylesheet" href="../css/tabulator.css">
-    <script>
-        function addData(txt)
-        {
-            document.Node.rData.value = txt;
-        }
-    </script>
+
     <script type="text/javascript" src="../js/tabbing.js"></script>
+    <script type="text/javascript">
+        tabledata = [];
+    </script>
+    <script src="../node_modules/three/build/three.js"></script>
+    <script src="../node_modules/three/examples/js/controls/OrbitControls.js"></script>
+    <script src="../node_modules/three/examples/js/libs/stats.min.js"></script>
+    <script src="../node_modules/three/examples/js/libs/dat.gui.min.js"></script>
     <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="../js/jquery-ui.js"></script>
     <script type="text/javascript" src="../js/tabulator.js"></script>
+    <script type="text/javascript" src="../js/dataio.js"></script>
 </head>
 
 <body>
@@ -30,11 +33,6 @@
         <div id="info">
             <a href="https://threejs.org" target="_blank" rel="noopener">three.js</a>
         </div>
-    
-        <script src="../node_modules/three/build/three.js"></script>
-        <script src="../node_modules/three/examples/js/controls/OrbitControls.js"></script>
-        <script src="../node_modules/three/examples/js/libs/stats.min.js"></script>
-        <script src="../node_modules/three/examples/js/libs/dat.gui.min.js"></script>
         <script src="../js/main.js"></script>
     </div>
 
@@ -46,44 +44,30 @@
     </div>
 
     <div id="Table" class="tabcontent">
-        <h3>Table</h3>
-        <div id="sample-table">
-        </div>
+        <div id="sample-table"></div>
+        <form name="SampleForm">
+            <textarea name="txtArea"></textarea>
+        </form>
     </div>
 
 </body>
     <script>
-        //define data
-        var tabledata = [
-            {id:1, x:1, y:12, z:0 },
-        ];
+        // window.alert([nodes.length-1].x);
+        // define data
+
 
         //Build Tabulator
         var table = new Tabulator("#sample-table", {
-            layout:"fitColumns",
-            reactiveData: true, //turn on data reactivity
-            data:tabledata, //load data into table
-            columns:[
-                {title:"node id", field:"id", sorter:"number", width:200},
-                {title:"X", field:"x", sorter:"number"},
-                {title:"Y", field:"y", sorter:"number"},
-                {title:"Z", field:"z", sorter: "number"},
-            ],
-        });
-
-        //add row to bottom of table on button click
-        document.getElementById("reactivity-add").addEventListener("click", function(){
-            tabledata.push({name:"IM A NEW ROW", progress:100, gender:"male"});
-        });
-
-        //remove bottom row from table on button click
-        document.getElementById("reactivity-delete").addEventListener("click", function(){
-            tabledata.pop();
-        });
-
-        //update name on first row in table on button click
-        document.getElementById("reactivity-update").addEventListener("click", function(){
-            tabledata[0].name = "IVE BEEN UPDATED";
-        });
+        layout:"fitColumns",
+        height:"100%",
+        reactiveData: true, //turn on data reactivity
+        data: tabledata, //load data into table
+        columns:[
+            {title:"node id", field:"id", sorter:"number", width:200},
+            {title:"X", field:"x", sorter:"number", formatter:"money", formatterParams:{precision:6}},
+            {title:"Y", field:"y", sorter:"number", formatter:"money", formatterParams:{precision:6}},
+            {title:"Z", field:"z", sorter: "number", formatter:"money", formatterParams:{precision:6}},
+        ],
+    });
     </script>
 </html>

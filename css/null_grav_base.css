@@ -3,6 +3,17 @@ body {
     overflow: hidden;
 }
 
+.tab {
+    margin: 0;
+    overflow: hidden;
+  }
+
+.tabcontent {
+    display: none;
+    margin: 0;
+    overflow: hidden;
+  }
+  
 #gui_css { 
     position: absolute; 
     

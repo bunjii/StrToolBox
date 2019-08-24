@@ -11,9 +11,12 @@
 <body>
     <script src="../js/tabbing.js"></script>
 
-    <button class="tablink" onclick="openPage('FileIO')" id="defaultOpen">FileIO</button>
-    <button class="tablink" onclick="openPage('Contact')">Data</button>
-
+    <div class="tab">
+        <button class="tablink" onclick="openPage('FileIO')" id="defaultOpen">FileIO</button>
+        <button class="tablink" onclick="openPage('Data')">Data</button>
+        <button class="tablink" onclick="openPage('Settings')">Settings</button>
+    </div>
+    
     <div id="FileIO" class="tabcontent">
         <form name="io1">
                 Open a file: <input type="file" id="select_file"/>
@@ -35,6 +38,15 @@
                 
             }, false)
         </script>
+    </div>
+
+    <div id="Data" class="tabcontent"></div>
+
+    <div id="Settings" class="tabcontent">
+        <h4>Precision</h3>
+        
+
+
     </div>
 
 

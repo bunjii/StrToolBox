@@ -90,8 +90,7 @@ app.on('ready', () => {
       nodeIntegration: false
     },
     width: 1800,
-    height: 1000
-    // ,alwaysOnTop: true
+    height: 1080
   });
 
   mainWindow.loadURL(`file://${__dirname}/index.html`);
