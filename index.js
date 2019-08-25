@@ -5,6 +5,7 @@ require('electron-reload')(__dirname, {
 });
 
 var edge = require('electron-edge-js');
+var data = require('./js/dataio');
 
 var add7 = edge.func({
   assemblyFile: "./cs/Sample.dll", 
@@ -14,12 +15,12 @@ var add7 = edge.func({
 add7(13, function (error, result) {
   if (error) throw error;
   console.log(result);
+  // window.alert(result);
 });
 
+// data.setmenu();
 const { app, BrowserWindow, Menu } = electron;
-
 const templateMenu = [
-
   // { role: 'appMenu' }
   ...(process.platform === 'darwin' ? [{
     label: app.getName(),
@@ -35,7 +36,6 @@ const templateMenu = [
       { role: 'quit' }
     ]
   }] : []),
-
   {
     label: 'Edit',
     submenu: [

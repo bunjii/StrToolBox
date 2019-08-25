@@ -127,24 +127,6 @@ function addData(txt)
     init();
     animate();
 
-    window.alert("hello");
-    var edge = require('electron-edge-js');
-
-    
-    var add7 = edge.func({
-        assemblyFile: "../cs/Sample.dll",
-        typeName: "Structure.Startup"
-    });
-    add7(12, function (error, result) {
-        if (error) throw error;
-        window.alert(result);
-    });
-
-    window.alert("hello");
-    
-
-
-
 }
 
 // three.js part
@@ -153,7 +135,7 @@ var container;
 var camera, scene, renderer;
 var mesh, geopts;
 
-var material = new THREE.MeshBasicMaterial( { color: 0x424242, wireframe: true, opacity: 0.5 } );
+// var material = new THREE.MeshBasicMaterial( { color: 0x424242, wireframe: true, opacity: 0.5 } );
 
 function addNode() {
 	if ( mesh !== undefined ) {
@@ -242,4 +224,10 @@ function animate() {
 
 function render() {
 	renderer.render( scene, camera );
+}
+
+//
+
+exports.setmenu = function(){
+
 }
