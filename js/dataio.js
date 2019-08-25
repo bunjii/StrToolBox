@@ -50,7 +50,6 @@ class NGLoad {
 
 function addData(txt)
 {
-    // var three = require('./three_main.js');
     // Input Tab
     document.Input.rData.value = txt;
 
@@ -127,6 +126,24 @@ function addData(txt)
 
     init();
     animate();
+
+    window.alert("hello");
+    var edge = require('electron-edge-js');
+
+    
+    var add7 = edge.func({
+        assemblyFile: "../cs/Sample.dll",
+        typeName: "Structure.Startup"
+    });
+    add7(12, function (error, result) {
+        if (error) throw error;
+        window.alert(result);
+    });
+
+    window.alert("hello");
+    
+
+
 
 }
 

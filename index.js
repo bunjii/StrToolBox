@@ -3,21 +3,18 @@ const path = require('path');
 require('electron-reload')(__dirname, {
     electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
 });
-const url = require('url');
 
 var edge = require('electron-edge-js');
 
 var add7 = edge.func({
-  assemblyFile: "./cs/StructuralTools.dll", 
-  typeName: "TestConnection.Startup"
+  assemblyFile: "./cs/Sample.dll", 
+  typeName: "Structure.Startup"
 });
 
-var helloWorld = edge.func(function () {/*
-  async (input) => {
-      return ".NET Welcomes " + input.ToString();
-  }
-*/});
-
+add7(13, function (error, result) {
+  if (error) throw error;
+  console.log(result);
+});
 
 const { app, BrowserWindow, Menu } = electron;
 
@@ -93,7 +90,7 @@ app.on('ready', () => {
     height: 1080
   });
 
-  mainWindow.loadURL(`file://${__dirname}/index.html`);
+  mainWindow.loadURL(`file://${__dirname}/html/index.html`);
 
   const menu = Menu.buildFromTemplate(templateMenu);
   Menu.setApplicationMenu(menu);
