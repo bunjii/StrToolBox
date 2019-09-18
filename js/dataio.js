@@ -226,8 +226,6 @@ function render() {
 	renderer.render( scene, camera );
 }
 
-//
-
 exports.setmenu = function(){
 
 }

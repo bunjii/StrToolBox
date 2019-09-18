@@ -6,52 +6,67 @@
     <meta charset="utf-8">
     <title>Null Gravity Version 0.1.0</title>
     <link rel="stylesheet" href="../css/null_grav_base.css">
-
+    <script src="../js/tabbing.js"></script>
+    <script src="../main.js"></script>
 </head>
 
 <body>
-    <script src="../js/tabbing.js"></script>
-    <script src="../index.js"></script>
     <div class="tab">
         <button class="tablink" onclick="openPage('FileIO')" id="defaultOpen">FileIO</button>
         <button class="tablink" onclick="openPage('Data')">Data</button>
         <button class="tablink" onclick="openPage('Settings')">Settings</button>
-        <button class="tablink" onclick="openPage('Analyze')">Analyze</button>
+        <button class="tablink" onclick="StartAnalysis()">Analyze</button>
     </div>
     
     <div id="FileIO" class="tabcontent">
         <form name="io1">
                 Open a file: <input type="file" id="select_file"/>
         </form>
-    
-        <script>
-            var obj1 = document.getElementById("select_file");
-            obj1.addEventListener("change", function(evt){
-                var file = evt.target.files;
 
-                // file reader
-                var reader = new FileReader();
-                reader.readAsText(file[0]);
-
-                reader.onload = function(){
-                    // send to the main frame
-                    parent.mainFrame.addData(reader.result);
-                }
-                
-            }, false)
-        </script>
     </div>
 
-    <div id="Data" class="tabcontent"></div>
-        <script>
-        </script>
+    <div id="Data" class="tabcontent">
+
+    </div>
 
     <div id="Settings" class="tabcontent">
         <h4>Precision</h3>
     </div>
-    <div id="Analyze" class="tabcontent"></div>
+
+    <div id="Analyze" class="tabcontent">
+
+    </div>
 
     
 </body>
     
+<script>
+    var _filepath = null;
+    var obj1 = document.getElementById("select_file");
+    obj1.addEventListener("change", function(evt){
+        var file = evt.target.files;
+        _filepath = file[0].path;
+        // file reader
+        var reader = new FileReader();
+        reader.readAsText(file[0]);
+
+        reader.onload = function(){
+            // send to the main frame
+            parent.mainFrame.addData(reader.result);
+        }
+        
+    }, false)
+
+    function StartAnalysis(){
+
+        if (_filepath == null){
+            alert("=== no file specified ===");
+        }
+        else{
+            alert(_filepath);
+        }
+    }
+
+
+</script>
 </html>

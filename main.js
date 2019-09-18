@@ -5,20 +5,19 @@ require('electron-reload')(__dirname, {
 });
 
 var edge = require('electron-edge-js');
-var data = require('./js/dataio');
 
 var add7 = edge.func({
   assemblyFile: "./cs/Sample.dll", 
   typeName: "Structure.Startup"
 });
 
-add7(13, function (error, result) {
+// example to send data to dll and get returned value
+add7(21, function (error, result) {
   if (error) throw error;
   console.log(result);
   // window.alert(result);
 });
 
-// data.setmenu();
 const { app, BrowserWindow, Menu } = electron;
 const templateMenu = [
   // { role: 'appMenu' }
@@ -94,4 +93,21 @@ app.on('ready', () => {
 
   const menu = Menu.buildFromTemplate(templateMenu);
   Menu.setApplicationMenu(menu);
+
+  // showMessageBox();
 });
+
+function showMessageBox() {
+  const { dialog } = require('electron')
+  var win = mainWindow
+  var options = {
+      type: 'info',
+      buttons: ['OK', 'test', 'Cancel', 'sample', 'Yes', 'No'],
+      title: 'title',
+      message: 'message',
+      detail: 'detailed message'
+  };
+  
+  dialog.showMessageBox(win, options);
+}
+
