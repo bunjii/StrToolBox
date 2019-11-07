@@ -4,19 +4,20 @@ require('electron-reload')(__dirname, {
     electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
 });
 
-var edge = require('electron-edge-js');
+// var edge = require('electron-edge-js');
 
-var add7 = edge.func({
-  assemblyFile: "./cs/Sample.dll", 
-  typeName: "Structure.Startup"
-});
+// var add7 = edge.func({
+//   assemblyFile: "./cs/Sample.dll", 
+//   typeName: "Structure.Startup"
+// });
 
 // example to send data to dll and get returned value
-add7(21, function (error, result) {
-  if (error) throw error;
-  console.log(result);
+// add7(21, function (error, result) {
+//   if (error) throw error;
+//   console.log(result);
   // window.alert(result);
-});
+// });
+const edge = require('electron-edge-js');
 
 const { app, BrowserWindow, Menu } = electron;
 const templateMenu = [
@@ -94,7 +95,6 @@ app.on('ready', () => {
   const menu = Menu.buildFromTemplate(templateMenu);
   Menu.setApplicationMenu(menu);
 
-  // showMessageBox();
 });
 
 function showMessageBox() {
@@ -111,3 +111,23 @@ function showMessageBox() {
   dialog.showMessageBox(win, options);
 }
 
+function testfunc() {
+  
+  // var edge = require('electron-edge-js');
+  // var add7_2 = edge.func({
+  //   assemblyFile: "./cs/Sample.dll", 
+  //  typeName: "Structure.Startup"
+  // });
+  
+
+  // add7_2(1, function (error, result) {
+  //   if (error) throw error;
+    // console.log(result);
+    // window.alert(result);
+  // });
+  // var res = 9;
+  window.alert("test func executed");
+  
+}
+
+// exports.testfunc = testfunc();
