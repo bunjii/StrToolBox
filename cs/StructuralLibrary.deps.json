@@ -1,0 +1,34 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v1.1",
+    "signature": "410a3d7d889a985949678ec49da778544af3305f"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v1.1": {
+      "StructuralLibrary/1.0.0": {
+        "dependencies": {
+          "Microsoft.NETCore.DotNetHost": "3.0.0"
+        },
+        "runtime": {
+          "StructuralLibrary.dll": {}
+        }
+      },
+      "Microsoft.NETCore.DotNetHost/3.0.0": {}
+    }
+  },
+  "libraries": {
+    "StructuralLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.NETCore.DotNetHost/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/FiK4gQKcwV0lM5NbL9MYHlWHh7u5jKWFUrK55HcEOTT/oJABLZUSg40VfDflyke6TojHkgVRFgL4liKkjepeA==",
+      "path": "microsoft.netcore.dotnethost/3.0.0",
+      "hashPath": "microsoft.netcore.dotnethost.3.0.0.nupkg.sha512"
+    }
+  }
+}

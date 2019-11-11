@@ -1,23 +1,20 @@
-const electron = require('electron');
-const path = require('path');
+var path = require('path');
 require('electron-reload')(__dirname, {
     electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
 });
+var electron = require('electron');
 
-// var edge = require('electron-edge-js');
-
-// var add7 = edge.func({
-//   assemblyFile: "./cs/Sample.dll", 
-//   typeName: "Structure.Startup"
-// });
-
-// example to send data to dll and get returned value
-// add7(21, function (error, result) {
-//   if (error) throw error;
-//   console.log(result);
-  // window.alert(result);
-// });
-const edge = require('electron-edge-js');
+process.env.EDGE_APP_ROOT = path.join(__dirname, 'cs');
+var edge = require('electron-edge-js');
+// process.env.EDGE_USE_CORECLR = 1;
+var testmethod = edge.func({
+  assemblyFile: "./cs/StructuralLibrary.dll",
+  typeName: "StructuralLibrary.Class1",
+  methodName: "Invoke"
+}) 
+console.log(typeof testmethod);
+var test = testmethod(10,true)
+console.log(test);
 
 const { app, BrowserWindow, Menu } = electron;
 const templateMenu = [
@@ -81,6 +78,7 @@ const templateMenu = [
 
 let mainWindow;
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
+
 app.on('ready', () => {
   mainWindow = new BrowserWindow({
     webPreferences: {
@@ -95,6 +93,7 @@ app.on('ready', () => {
   const menu = Menu.buildFromTemplate(templateMenu);
   Menu.setApplicationMenu(menu);
 
+  mainWindow.openDevTools();
 });
 
 function showMessageBox() {
@@ -112,22 +111,11 @@ function showMessageBox() {
 }
 
 function testfunc() {
-  
-  // var edge = require('electron-edge-js');
-  // var add7_2 = edge.func({
-  //   assemblyFile: "./cs/Sample.dll", 
-  //  typeName: "Structure.Startup"
-  // });
-  
 
-  // add7_2(1, function (error, result) {
-  //   if (error) throw error;
-    // console.log(result);
-    // window.alert(result);
-  // });
-  // var res = 9;
-  window.alert("test func executed");
+  // var a = testmethod(12, true);
+  var a = {}
+  // a.testmethod(12, true);
+  // window.alert("test func executed");
+  console.log(a);
   
 }
-
-// exports.testfunc = testfunc();
