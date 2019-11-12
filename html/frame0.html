@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/null_grav_base.css">
     <script src="../js/tabbing.js"></script>
     <script src="../main.js"></script>
+    <script src="../js/temp.js"></script>
 </head>
 
 <body>
@@ -15,7 +16,7 @@
         <button class="tablink" onclick="openPage('FileIO')" id="defaultOpen">FileIO</button>
         <button class="tablink" onclick="openPage('Data')">Data</button>
         <button class="tablink" onclick="openPage('Settings')">Settings</button>
-        <button class="tablink" onclick="StartAnalysis()">Analyze</button>
+        <button class="tablink" onclick="StartAnalysis(_filepath)">Analyze</button>
     </div>
     
     <div id="FileIO" class="tabcontent">
@@ -54,24 +55,6 @@
             // send to the main frame
             parent.mainFrame.addData(reader.result);
         }
-        
     }, false)
-
-    function StartAnalysis(){
-
-        if (_filepath == null){
-            alert("=== no file specified ===");
-        }
-        else{
-            testfunc(); 
-            // add7(21, function (error, result) {
-            //     if (error) throw error;
-            //     window.alert(result);
-            // });
-            // alert(error);
-        }
-    }
-
-
 </script>
 </html>

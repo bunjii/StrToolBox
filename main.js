@@ -4,17 +4,20 @@ require('electron-reload')(__dirname, {
 });
 var electron = require('electron');
 
-process.env.EDGE_APP_ROOT = path.join(__dirname, 'cs');
-var edge = require('electron-edge-js');
-// process.env.EDGE_USE_CORECLR = 1;
-var testmethod = edge.func({
-  assemblyFile: "./cs/StructuralLibrary.dll",
-  typeName: "StructuralLibrary.Class1",
-  methodName: "Invoke"
-}) 
-console.log(typeof testmethod);
-var test = testmethod(10,true)
-console.log(test);
+function edgesetting(){
+
+  var edge = require('electron-edge-js');
+  console.log(edge);
+  var testmethod = edge.func({
+    assemblyFile: "./cs/StructuralLibrary.dll",
+    typeName: "StructuralLibrary.Class1",
+    methodName: "Invoke"
+    // dotnet core version = 1.1
+  });
+
+}
+
+edgesetting();
 
 const { app, BrowserWindow, Menu } = electron;
 const templateMenu = [
@@ -78,6 +81,7 @@ const templateMenu = [
 
 let mainWindow;
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
+process.env.EDGE_APP_ROOT = path.join(__dirname, 'cs');
 
 app.on('ready', () => {
   mainWindow = new BrowserWindow({
@@ -96,26 +100,50 @@ app.on('ready', () => {
   mainWindow.openDevTools();
 });
 
-function showMessageBox() {
-  const { dialog } = require('electron')
-  var win = mainWindow
-  var options = {
-      type: 'info',
-      buttons: ['OK', 'test', 'Cancel', 'sample', 'Yes', 'No'],
-      title: 'title',
-      message: 'message',
-      detail: 'detailed message'
-  };
+// function showMessageBox() {
+//   const { dialog } = require('electron')
+//   var win = mainWindow
+//   var options = {
+//       type: 'info',
+//       buttons: ['OK', 'test', 'Cancel', 'sample', 'Yes', 'No'],
+//       title: 'title',
+//       message: 'message',
+//       detail: 'detailed message'
+//   };
   
-  dialog.showMessageBox(win, options);
+//   dialog.showMessageBox(win, options);
+// }
+
+// (function(){
+
+//   function testfunc(_filepath) {
+
+//     console.log(_filepath);
+//     var a = testmethod(99, true);
+//     console.log(a);
+//   }
+
+//   mainWindow.commonLib = mainWindow.commonLib|| {};
+//   mainWindow.commonLib.testfunc = testfunc;
+
+// })();
+
+globalaaa = 999; 
+exports.globalaaa = this.globalaaa;
+
+function StartAnalysis(_filepath_){
+  // edgesetting();
+  
+
+  if (_filepath_ == null){
+      alert("=== no file specified ===");
+  }
+  else{
+      console.log(_filepath_);
+      // var a = testmethod(10, true);
+      console.log(this.globalaaa);
+  }
 }
 
-function testfunc() {
 
-  // var a = testmethod(12, true);
-  var a = {}
-  // a.testmethod(12, true);
-  // window.alert("test func executed");
-  console.log(a);
-  
-}
+
